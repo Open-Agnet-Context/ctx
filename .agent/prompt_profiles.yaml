@@ -1,0 +1,16 @@
+profiles:
+    cheap:
+        description: Summaries only; minimal context and references.
+        include_architecture: false
+        include_standards: false
+        detail: summary
+    deep:
+        description: Full context disclosure; include architecture, standards, and constraints.
+        include_architecture: true
+        include_standards: true
+        detail: full
+    standard:
+        description: Include architecture and standards for balanced prompts.
+        include_architecture: true
+        include_standards: true
+        detail: balanced

@@ -119,6 +119,18 @@ func ResolveTemplate(templateName string) (Context, string, error) {
 	return finalizeTemplateMetadata(fallback, "default", templateName), "default", nil
 }
 
+// ApplyTemplateToContext resolves a template and writes it to .agent/context.yaml.
+func ApplyTemplateToContext(templateName string) (string, error) {
+	ctx, resolved, err := ResolveTemplate(templateName)
+	if err != nil {
+		return "", err
+	}
+	if err := SaveContext(ctx); err != nil {
+		return "", err
+	}
+	return resolved, nil
+}
+
 // ListRepoTemplates returns YAML template files under .agent/templates.
 func ListRepoTemplates() ([]string, error) {
 	dir := AgentPath(templatesDir)

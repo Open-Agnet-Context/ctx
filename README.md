@@ -27,6 +27,7 @@ go mod vendor
 - `ctx init <template>`: create `.agent/` with starter context/state/prompt profiles. No prompts.
 - `ctx template list`: show built-in templates and repo-local overrides.
 - `ctx template install <name> [--force]`: copy a built-in template into `.agent/templates/`.
+- `ctx context apply <template>`: overwrite `.agent/context.yaml` with a template (after init).
 - `ctx issue "<text>"`: create a new work item, classify intent, set it active.
 - `ctx work start <WI-XXX>`: mark a work item active and suggest a branch name.
 - `ctx work stop`: prompt for a one-line handoff summary and pause the active item.
@@ -36,6 +37,7 @@ go mod vendor
 ## Templates
 - Repo templates live in `.agent/templates/<name>.yaml` and follow the same structure as `.agent/context.yaml`.
 - `ctx init <template>` resolves templates in this order: repo template override, built-in template, built-in `default` fallback.
+- `ctx context apply <template>` overwrites `.agent/context.yaml` using the same resolution order so you can switch templates after init without touching state or prompt profiles.
 - `ctx template list` shows built-in templates and any repo templates.
 - `ctx template install <name> [--force]` copies a built-in template into `.agent/templates/` so you can edit it without rebuilding the binary.
 

@@ -1,0 +1,25 @@
+project:
+    name: ctx
+    summary: Offline, repo-local CLI for managing developer context, intent, and prompts without network access.
+    template: default
+architecture:
+    style: cli-offline
+    version: v1
+    notes: Single static Go binary (Cobra) that reads/writes .agent/ data in-repo; deterministic, no telemetry or network calls.
+standards:
+    code:
+        - Go 1.21+; cobra commands kept small and composable.
+        - No runtime network calls or telemetry; all I/O is repo-local.
+        - Keep persisted YAML/Markdown human-editable and backward compatible.
+    process:
+        - Keep prompts token-cheap; prefer summaries over full dumps.
+        - Reference evidence paths; do not inline logs.
+        - Default to offline operation; avoid introducing external services.
+constraints:
+    - Keep prompts token-cheap; expand context only when profile requests.
+    - Maintain portable state inside the repo for agent switching and parallel work.
+    - Preserve backward compatibility of .agent/ artifacts and CLI flags.
+quality_gates:
+    - All tests pass and lint is clean.
+    - No breaking API changes.
+    - Prompt written to .agent/exports/current.prompt.md.
