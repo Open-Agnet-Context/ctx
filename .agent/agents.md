@@ -57,3 +57,5 @@ If the user says “fix this” with little detail:
 
 ## 8) Evidence
 Evidence attachments are optional. If provided, store as files under `.agent/evidence/` and reference paths in the WI. Do not inline large logs.
+
+Follow AGENTS.md. Read .agent/context.yaml and .agent/state.yaml. Fix the active work item and update WI + state on completion.
